@@ -11,6 +11,7 @@ if(empty($_SESSION['list_of_cds'])) {
     $_SESSION['list_of_cds'] = array();
 }
 
+
 $app = new Silex\Application();
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array("twig.path" => __DIR__."/../views"
@@ -23,7 +24,9 @@ $app->post("/delete_list", function() use ($app) {
 
 $app->post("/search", function () use ($app) {
     $searchresult = array();
+    $search = $_POST['albumsearch'];
     $albums = $_SESSION['list_of_cds'];
+    $storagevar = array_search($search, $_SESSION);
     foreach($albums as $album)
     {
         if ($album->getAlbumTitle() == $_POST['albumsearch'])
@@ -31,6 +34,7 @@ $app->post("/search", function () use ($app) {
             array_push($searchresult, $album);
         }
     }
+    var_dump($storagevar);
     return
      $app["twig"]->render("search.html.twig",  array("albumresults" => $searchresult));
 
@@ -42,6 +46,8 @@ $app->get("/search", function () use ($app) {
 });
 
 $app->get("/", function () use ($app) {
+    var_dump($_SESSION['list_of_cds1']);
+    var_dump($_SESSION['list_of_cds2']);
     return $app["twig"]->render("cdhome.html.twig", array("cds" => CD::getAll()));
 });
 

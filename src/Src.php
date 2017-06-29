@@ -23,7 +23,12 @@ class CD
     }
     function save()
     {
-        array_push($_SESSION['list_of_cds'], $this);
+        for ($x = 1; ; $x += 1)
+        {
+        $session_argument = "list_of_cds" . $x;
+        array_push($_SESSION[$session_argument], $this);
+        break;
+        }
     }
     static function deleteAll()
     {
