@@ -24,8 +24,36 @@
           <button type='submit' class='btn-info'>Add album</button>
       </form>
 
+      <h3>Search  Albums</h3>
+	    <p>You may search either by album title or artist name</p>
+	    <form  method="post" action="/search"  id="searchform">
+        <label for='albumsearch'>Album Search</label>
+        <input id='albumsearch' name='albumsearch' type='text'>
+
+
+            <button type='submit' class='btn-info'>Search albums</button>
+	    </form>
+
       <form action='/delete_list' method='post'>
           <button type='submit' class='btn-danger'>delete</button>
       </form>
+      <h3> Search Results by Album </h3>
+
+      <p>Here are your Albums</p>
+      <ul>
+          {% for albumresult in albumresults %}
+              <li>Name: {{ cd.getAlbumTitle }}</li>
+              <p>Artist: {{ cd.getArtistTitle }}</p>
+          {% endfor %}
+      </ul>
+
+      <h3> Search Results by Artist </h3>
+      <p>Here are your Albums</p>
+      <ul>
+          {% for artistresult in artistresults %}
+              <li>Name: {{ cd.getAlbumTitle }}</li>
+              <p>Artist: {{ cd.getArtistTitle }}</p>
+          {% endfor %}
+      </ul>
 </body>
 </html>
