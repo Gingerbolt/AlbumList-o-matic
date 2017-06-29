@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>You still have CD's?</title>
+</head>
+<body>
+    <h1>Your Albums</h1>
+        {% if cds is not empty %}
+            <p>Here are your Albums</p>
+            <ul>
+                {% for cd in cds %}
+                    <li>Name: {{ cd.getAlbumTitle }}</li>
+                    <p>Artist: {{ cd.getArtistTitle }}</p>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+      <form action='/cdsave' method="post">
+          <label for='album'>Album name</label>
+          <input id='album' name='album' type='text'>
+          <label for='artist'>Artist name</label>
+          <input id='artist' name='artist' type='text'>
+
+          <button type='submit' class='btn-info'>Add album</button>
+      </form>
+
+      <form action='/delete_list' method='post'>
+          <button type='submit' class='btn-danger'>delete</button>
+      </form>
+</body>
+</html>
