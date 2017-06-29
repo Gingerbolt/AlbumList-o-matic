@@ -22,11 +22,17 @@ $app->post("/delete_list", function() use ($app) {
 });
 
 $app->post("/search", function () use ($app) {
-    $_SESSION['albumsearch'] = $_POST['albumsearch'];
-    var_dump($_SESSION['albumsearch']);
- array_search($_SESSION['albumsearch'], $_SESSION['list_of_cds']);
+    $searchresult = array();
+    $albums = $_SESSION['list_of_cds'];
+    foreach($albums as $album)
+    {
+        if ($album->getAlbumTitle() == $_POST['albumsearch'])
+        {
+            array_push($searchresult, $album);
+        }
+    }
     return
-     $app["twig"]->render("search.html.twig",  array("albumresults" => ));
+     $app["twig"]->render("search.html.twig",  array("albumresults" => $searchresult));
 
 });
 

@@ -3,11 +3,14 @@
     <title>Search Results</title>
 <head>
 <body>
+
 {% if albumresults is not empty %}
-<h1>This worked </h1>
+<h1> Search results </h1>
+<ul>
+ {% for albumresult in albumresults %}
+ <li> {{ albumresult.getArtistTitle}} </li>
+ <li> {{ albumresult.getAlbumTitle}} </li>
+{% endfor %}
 {% endif %}
-{% else %}
-<h1> this totally didnt work <h1>
-{% endelse %}
 </body>
 </html>

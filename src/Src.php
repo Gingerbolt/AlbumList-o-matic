@@ -29,10 +29,6 @@ class CD
     {
         return $_SESSION['list_of_cds'] = array();
     }
-    static function albumSearch()
-    {
-        return array_search($_SESSION['albumsearch'], $this);
-    }
 
 }
 
